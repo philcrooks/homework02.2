@@ -11,6 +11,17 @@ class Venue
     @master.add_song("ABBA", "Dancing Queen", "pop")
     @master.add_song("Queen", "Bohemian Rhapsody", "rock")
     @master.add_song("Ed Sheeran", "Talking Out Loud", "pop,rock")
+    @master.add_song("Bob Marley", "Jammin'", "reggae")
+    @master.add_song("Led Zepplin", "Black Dog", "rock")
+    @master.add_song("Metallica", "Enter Sandman", "metal,rock")
+    @master.add_song("Metallica", "Nothing Else Matters", "metal,rock")
+    @master.add_song("Black Sabbath", "Paranoid", "metal,rock")
+    @master.add_song("Black Sabbath", "Iron Man
+      ", "metal,rock")
+    @master.add_song("Eminiem", "Stan", "rap")
+    @master.add_song("Sugar, Sugar", "The Archies", "pop")
+    @master.add_song("Mr. Tambourine Man", "The Byrds", "rock,pop")
+    @master.add_song("Brown Sugar", "The Rolling Stones", "rock")
 
     # @metal = Library.new(@library.song_search(Song::GENRE, "metal"))
     # @rock_and_pop = Library.new(@library.song_search(Song::GENRE, "rock") << @library.song_search(Song::GENRE, "pop"))
@@ -36,39 +47,39 @@ class Venue
 
     # Initialise the guests
     @guests = []
-    guest = Guest.new("Reg Wailer", 20.0, { type: "vodka", brand: "Grey Goose" })
-    guest.favourite_music[Song::GENRE] = []
-    guest.favourite_music[Song::ARTIST] = []
-    guest.favourite_music[Song::SONG_TITLE] = []
-    @guests << guest
-
     guest = Guest.new("Craig Crooner", 20.0, { type: "whisky", brand: "Famous Grouse" })
     guest.favourite_music[Song::GENRE] = []
     guest.favourite_music[Song::ARTIST] = []
     guest.favourite_music[Song::SONG_TITLE] = []
     @guests << guest
 
-    guest = Guest.new("Mad Myrtle", 10.0, { type: "gin", brand: "Gordon's" })
-    guest.favourite_music[Song::GENRE] = []
+    guest = Guest.new("Bob Wailer", 20.0, { type: "vodka", brand: "Grey Goose" })
+    guest.favourite_music[Song::GENRE] = ["reggae", "pop"]
+    guest.favourite_music[Song::ARTIST] = ["Bob Marley"]
+    guest.favourite_music[Song::SONG_TITLE] = ["Jammin'"]
+    @guests << guest
+
+    guest = Guest.new("Moaning Myrtle", 10.0, { type: "gin", brand: "Gordon's" })
+    guest.favourite_music[Song::GENRE] = ["rock", "pop", "reggae"]
     guest.favourite_music[Song::ARTIST] = []
     guest.favourite_music[Song::SONG_TITLE] = []
     @guests << guest
 
-    guest = Guest.new("Vocal Victor", 5.0, { type: "beer", brand: "Guinness" })
-    guest.favourite_music[Song::GENRE] = []
+    guest = Guest.new("Moshpit Mike", 5.0, { type: "beer", brand: "Guinness" })
+    guest.favourite_music[Song::GENRE] = ["metal", "rock"]
+    guest.favourite_music[Song::ARTIST] = ["Metallica", "Led Zepplin"]
+    guest.favourite_music[Song::SONG_TITLE] = ["Nothing Else Matters"]
+    @guests << guest
+
+    guest = Guest.new("Janice Joppa", 15, { type: "gin", brand: "Beafeater's" })
+    guest.favourite_music[Song::GENRE] = ["rock"]
     guest.favourite_music[Song::ARTIST] = []
     guest.favourite_music[Song::SONG_TITLE] = []
     @guests << guest
 
-    guest = Guest.new("Moshpit Molly", 15, { type: "gin", brand: "Beafeater's" })
-    guest.favourite_music[Song::GENRE] = []
-    guest.favourite_music[Song::ARTIST] = []
-    guest.favourite_music[Song::SONG_TITLE] = []
-    @guests << guest
-
-    guest = Guest.new("Larry Lungs", 25.0, { type: "whisky", brand: "Macallan 18" })
-    guest.favourite_music[Song::GENRE] = []
-    guest.favourite_music[Song::ARTIST] = []
+    guest = Guest.new("Keef Glimmer", 25.0, { type: "whisky", brand: "Macallan 18" })
+    guest.favourite_music[Song::GENRE] = ["rock"]
+    guest.favourite_music[Song::ARTIST] = ["The Rolling Stones"]
     guest.favourite_music[Song::SONG_TITLE] = []
     @guests << guest
 
@@ -111,7 +122,7 @@ class Venue
 
       @rooms.each { |r| r.something_happens if r.occupants.count > 0 }
 
-      puts "Is it time to send everyone home? (y/n)"
+      print "Is it time to send everyone home? (y/n): "
       they_party_on = gets.chomp.downcase != "y"
       puts
     end

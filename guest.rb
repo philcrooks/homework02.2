@@ -64,6 +64,6 @@ class Guest
     for drink in @bar_tab
       puts "   #{drink}"
     end
-    puts "   %-20s %6.2f" % ["Total", tab_total]
+    puts "   %-20s %6.2f" % ["TOTAL", tab_total]
   end
 end

@@ -51,7 +51,7 @@ class Room
     end
     for guest in @occupants
       drink = guest.choose_drink(@bar)
-      puts "#{guest.name} can't get his/her favourite drink of #{guest.favourite_drink[:brand]} #{guest.favourite_drink[:type]}" if drink.brand != guest.favourite_drink[:brand]
+      puts "#{guest.name} can't get his/her favourite drink of #{guest.favourite_drink[:brand]} (#{guest.favourite_drink[:type]})" if drink.brand != guest.favourite_drink[:brand]
       if guest.can_afford_drink?(drink)
         guest.buy_drink(drink)
         puts "#{guest.name} has ordered a #{drink.brand}."
