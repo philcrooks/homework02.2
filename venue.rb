@@ -19,7 +19,7 @@ class Venue
     @master.add_song("Black Sabbath", "Iron Man
       ", "metal,rock")
     @master.add_song("Eminiem", "Stan", "rap")
-    @master.add_song("Sugar, Sugar", "The Archies", "pop")
+    @master.add_song("The Archies", "Sugar, Sugar", "pop")
     @master.add_song("Mr. Tambourine Man", "The Byrds", "rock,pop")
     @master.add_song("Brown Sugar", "The Rolling Stones", "rock")
 
