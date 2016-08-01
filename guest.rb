@@ -60,6 +60,7 @@ class Guest
   end
 
   def print_tab
+    # This should be in the venue - guest is not the right place for the method.
     puts "\n%s (credit: %0.2f)" % [name, credit]
     for drink in @bar_tab
       puts "   #{drink}"
