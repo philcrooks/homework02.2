@@ -71,7 +71,7 @@ class Venue
     guest.favourite_music[Song::SONG_TITLE] = ["Nothing Else Matters"]
     @guests << guest
 
-    guest = Guest.new("Janice Joppa", 15, { type: "gin", brand: "Beafeater's" })
+    guest = Guest.new("Janice Joppa", 15, { type: "gin", brand: "Beefeater" })
     guest.favourite_music[Song::GENRE] = ["rock"]
     guest.favourite_music[Song::ARTIST] = []
     guest.favourite_music[Song::SONG_TITLE] = []
@@ -129,7 +129,7 @@ class Venue
     puts "It's time to go home but first it's time to pay the bill."
     for room in @rooms
       for guest in room.occupants
-        guest.print_tab
+        puts "\n#{guest.bar_tab}"
       end
     end
   end

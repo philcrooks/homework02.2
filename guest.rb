@@ -2,6 +2,7 @@ require_relative ('./bar')
 require_relative ('./drink')
 require_relative ('./library')
 require_relative ('./song')
+require_relative ('./tab')
 
 class Guest
 
@@ -11,7 +12,7 @@ class Guest
   def initialize (name, credit, drink)
     @name = name
     @credit = credit
-    @bar_tab = []
+    @bar_tab = Tab.new(name, credit)
     @favourite_music = {
       Song::SONG_TITLE => [],
       Song::ARTIST => [],
@@ -31,13 +32,9 @@ class Guest
     return songs.shuffle[0]
   end
 
-  def tab_total
-    total = 0.0
-    for drink in @bar_tab
-      total += drink.price
-    end
-    return total
-  end
+  # def tab_total
+  #   return @tab.total()
+  # end
 
   def choose_drink(bar)
     choice = nil
@@ -52,19 +49,10 @@ class Guest
   end
 
   def can_afford_drink?(drink)
-    return @credit >= tab_total + drink.price
+    return @credit >= @bar_tab.total + drink.price
   end
 
   def buy_drink(drink)
-    @bar_tab << drink
-  end
-
-  def print_tab
-    # This should be in the venue - guest is not the right place for the method.
-    puts "\n%s (credit: %0.2f)" % [name, credit]
-    for drink in @bar_tab
-      puts "   #{drink}"
-    end
-    puts "   %-20s %6.2f" % ["TOTAL", tab_total]
+    @bar_tab.add(drink)
   end
 end
