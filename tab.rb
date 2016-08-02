@@ -14,11 +14,12 @@ class Tab
   end
 
   def total
-    sum = 0.0
-    for drink in @tab
-      sum += drink.price
-    end
-    return sum
+    # sum = 0.0
+    # for drink in @tab
+    #   sum += drink.price
+    # end
+    # return sum
+    return @tab.inject(0.0) { | sum, drink | sum + drink.price }
   end
 
   def to_s
