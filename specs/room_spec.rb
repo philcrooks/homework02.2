@@ -39,17 +39,20 @@ class TestRoom < Minitest::Test
     assert_equal(true, @room.at_capacity?)
   end
 
-  def test_singer
+  def test_change_singer_no_singer
     @room.add_occupant(@guest1)
-    assert_equal(@room.occupants[0], @room.singer)
     @room.add_occupant(@guest2)
-    assert_equal(@room.occupants[0], @room.singer)
+    assert_equal(nil, @room.singer)
+    @room.change_singer
+    assert_equal(@room.occupants.first, @room.singer)
   end
 
-  def test_change_singer
+  def test_change_singer_was_singer
     @room.add_occupant(@guest1)
     @room.add_occupant(@guest2)
+    @room.change_singer
     singer1 = @room.singer
+    assert_equal(@room.occupants.first, singer1)
     @room.change_singer
     singer2 = @room.singer
     assert_equal(false, singer1 == singer2)

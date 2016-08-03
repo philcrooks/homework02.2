@@ -4,7 +4,7 @@ require_relative ('./guest')
 
 class Room
 
-  attr_reader :occupants, :new_arrivals, :name
+  attr_reader :occupants, :new_arrivals, :name, :singer
 
   def initialize (name, capacity, library, bar)
     @name = name
@@ -18,19 +18,19 @@ class Room
   end
 
   def change_singer
-    if @occupants.count > 0
-      singer = @occupants[0]
-      @occupants.delete_at(0)
-      @occupants << singer
-      return singer
+    if (@occupants.count > 0)
+      if @singer
+        @occupants.delete(@singer)
+        @occupants << @singer
+      end
+      @singer = @occupants.first
     end
-    return nil
-  end
-
-  def singer
-    @singer = @occupants.first
     return @singer
   end
+
+  # def singer
+  #   return @occupants.first
+  # end
 
   def at_capacity?
     return @occupants.count >= @capacity
@@ -61,11 +61,7 @@ class Room
     end
     if @occupants.count > 1
       # No-one will sing unless there is an audience of at least 1
-      if !@singer
-        @singer = @occupants.first
-      else
-        change_singer()
-      end
+      change_singer()
       song = @singer.choose_song(@music_library)
       puts "#{@singer.name} is going to sing '#{song.title}' by #{song.artist}."
     end
